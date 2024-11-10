@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { toast } from "sonner"
+import { Link } from "react-router-dom"
 
 export function Signin() {
 
@@ -29,6 +30,9 @@ export function Signin() {
         <>
             <Helmet title="login" />
             <div className="p-8">
+                <Button variant={"ghost"} asChild className="absolute right-8 top-8">
+                    <Link to={'/signup'}>Novo estabelecimento</Link>
+                </Button>
                 <div className="w-[350px] flex flex-col justify-center gap-6">
                     <div className="flex flex-col gap-2 text-center">
                         <h1 className="text-2xl font-semibold tracking-tight">Acessar Painel</h1>
