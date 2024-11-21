@@ -2,12 +2,10 @@ import {
     CartesianGrid,
     Line,
     LineChart,
-    ResponsiveContainer,
-    Tooltip,
-    XAxis,
-    YAxis,
-  } from 'recharts'
-  import colors from 'tailwindcss/colors'
+    ResponsiveContainer, XAxis,
+    YAxis
+} from 'recharts'
+import colors from 'tailwindcss/colors'
   
   import {
     Card,
@@ -15,7 +13,7 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-  } from '@/components/ui/card'
+} from '@/components/ui/card'
   
   const data = [
     { date: '10/12', revenue: 1200 },
