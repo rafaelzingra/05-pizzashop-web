@@ -6,20 +6,23 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { toast } from "sonner"
 import { Link } from "react-router-dom"
+import { useMutation } from "@tanstack/react-query"
+import { signIn } from "@/api/signin"
 
-export function Signin() {
+type SigninForm = z.infer<typeof signinForm>
+
+export function Signin() {    
 
     const { register, handleSubmit, formState: {isSubmitting} } = useForm<SigninForm>()
-    const signinForm = z.object({
-        email: z.string().email(),
-    })
 
-    type SigninForm = z.infer<typeof signinForm>
+    const { mutateAsync: authenticate } = useMutation({
+        mutationFn: signIn,
+
+    })
     
     async function handleSignin(data: SigninForm) {
         try {
-            console.log(data)            
-            await new Promise(resolve => setTimeout(resolve,2000))
+            await authenticate({email: data.email})
             toast.success('Enviamos um link de autenticação para seu email!')
         } catch {
             toast.error('Email inválido!')
