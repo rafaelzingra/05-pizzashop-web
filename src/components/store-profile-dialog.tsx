@@ -10,7 +10,6 @@ import { z } from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import { updateProfile } from "@/api/update-profile";
 import { toast } from "sonner";
-import { queryClient } from "@/lib/react-query";
 
 const storeProfileSchema = z.object({
     name: z.string().min(1),
