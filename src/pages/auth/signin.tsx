@@ -9,6 +9,10 @@ import { Link } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
 import { signIn } from "@/api/signin"
 
+const signinForm = z.object({
+    email: z.string().email()
+})
+
 type SigninForm = z.infer<typeof signinForm>
 
 export function Signin() {    
