@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { toast } from "sonner"
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import { useMutation } from "@tanstack/react-query"
 import { signIn } from "@/api/signin"
 
@@ -15,13 +15,17 @@ const signinForm = z.object({
 
 type SigninForm = z.infer<typeof signinForm>
 
-export function Signin() {    
+export function Signin() {   
+    const [searchParams] = useSearchParams()
 
-    const { register, handleSubmit, formState: {isSubmitting} } = useForm<SigninForm>()
+    const { register, handleSubmit, formState: {isSubmitting} } = useForm<SigninForm>({
+        defaultValues: {
+            email: searchParams.get('email') ?? ''
+        }
+    })
 
     const { mutateAsync: authenticate } = useMutation({
         mutationFn: signIn,
-
     })
     
     async function handleSignin(data: SigninForm) {
