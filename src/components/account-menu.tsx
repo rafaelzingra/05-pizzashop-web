@@ -8,7 +8,7 @@ import { getManagedRestaurant } from "@/api/get-managed-restaurant";
 import { Dialog, DialogTrigger } from "./ui/dialog";
 import { StoreProfileDialog } from "./store-profile-dialog";
 import { signOut } from "@/api/signout";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function AccountMenu(){
     const navigate = useNavigate()
