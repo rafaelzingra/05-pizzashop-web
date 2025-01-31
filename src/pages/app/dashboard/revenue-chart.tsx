@@ -15,8 +15,9 @@ import colors from 'tailwindcss/colors'
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
-import { getDayliRevenueInPeriod } from '@/api/get-daily-revenue-in-period'
 
+import { Loader2 } from 'lucide-react'
+import { getDayliRevenueInPeriod } from '@/api/get-daily-revenue-in-period'
   
 export function RevenueChart() {
 
@@ -36,31 +37,36 @@ export function RevenueChart() {
         </div>        
       </CardHeader>
       <CardContent>
-        {dailyRevenueInPeriod && (
+
+        {dailyRevenueInPeriod ? (
           <ResponsiveContainer width="100%" height={240}>
-          <LineChart data={dailyRevenueInPeriod} style={{ fontSize: 12 }}>
-            <XAxis dataKey="date" axisLine={false} tickLine={false} dy={16} />
-            <YAxis
-              stroke="#888"
-              axisLine={false}
-              tickLine={false}
-              width={80}
-              tickFormatter={(value: number) =>
-                value.toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
-                })
-              }
-            />
-            <CartesianGrid vertical={false} className="stroke-muted" />
-            <Line
-              stroke={colors.violet[500]}
-              type="linear"
-              strokeWidth={2}
-              dataKey="receipt"
-            />
-          </LineChart>
-        </ResponsiveContainer>
+            <LineChart data={dailyRevenueInPeriod} style={{ fontSize: 12 }}>
+              <XAxis dataKey="date" axisLine={false} tickLine={false} dy={16} />
+              <YAxis
+                stroke="#888"
+                axisLine={false}
+                tickLine={false}
+                width={80}
+                tickFormatter={(value: number) =>
+                  value.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })
+                }
+              />
+              <CartesianGrid vertical={false} className="stroke-muted" />
+              <Line
+                stroke={colors.violet[500]}
+                type="linear"
+                strokeWidth={2}
+                dataKey="receipt"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        ):(
+          <div className='flex h-[240px] items-center justify-center w-full'>
+            <Loader2 className='h-8 w-8 text-muted-foreground animate-spin' />
+          </div>
         )}
       </CardContent>
     </Card>
