@@ -11,7 +11,7 @@ export const router = createBrowserRouter ([
     {
         path: '/',
         element: <AppLayout />,
-        errorElement: <NotFound />,
+        // errorElement: <NotFound />,
         children: [
             {path: '/', element: <Dashboard />},
             {path: '/orders', element: <Orders />}
@@ -26,4 +26,8 @@ export const router = createBrowserRouter ([
             {path: '/signup', element: <Signup />}
         ],        
     },
+    {
+        path: '*',
+        element: <NotFound />
+    }
 ])
