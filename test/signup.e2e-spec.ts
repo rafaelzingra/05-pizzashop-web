@@ -13,7 +13,7 @@ test('sign up successfully', async ({ page }) => {
     'Restaurante cadastrado com sucesso!',
   )
 
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 })
 
 test('sign up with error', async ({ page }) => {
@@ -29,7 +29,7 @@ test('sign up with error', async ({ page }) => {
       'Algo deu errado, tente novamente mais tarde.',
     )
   
-    expect(toast).toBeVisible()
+    await expect(toast).toBeVisible()
   })
 
 test('navigate to login page', async ({ page }) => {
